@@ -34,6 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="container site-header__inner">
 
+		<!-- Logo / Site Name -->
 		<div class="site-branding">
 
 			<?php if ( has_custom_logo() ) : ?>
@@ -53,6 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		</div>
 
+		<!-- Desktop Navigation -->
 		<nav
 			class="primary-navigation"
 			aria-label="<?php esc_attr_e( 'Primary menu', 'spicy-video' ); ?>"
@@ -70,6 +72,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 
 		</nav>
+
+		<!-- Mobile Menu Button -->
+		<button
+			class="mobile-menu-toggle"
+			type="button"
+			aria-controls="mobile-navigation"
+			aria-expanded="false"
+			aria-label="<?php esc_attr_e( 'Open menu', 'spicy-video' ); ?>"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+
+	</div>
+
+	<!-- Mobile Navigation -->
+	<div
+		id="mobile-navigation"
+		class="mobile-navigation"
+		aria-hidden="true"
+	>
+
+		<div class="container">
+
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'primary',
+					'menu_class'     => 'mobile-menu',
+					'container'      => false,
+					'fallback_cb'    => false,
+				)
+			);
+			?>
+
+		</div>
 
 	</div>
 
