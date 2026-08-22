@@ -14,24 +14,29 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function spicy_video_enqueue_assets() {
 
-	/**
-	 * Main stylesheet.
-	 */
+	$css_file = SPICY_VIDEO_DIR . '/assets/css/main.css';
+	$js_file  = SPICY_VIDEO_DIR . '/assets/js/main.js';
+
+	$css_version = file_exists( $css_file )
+		? filemtime( $css_file )
+		: SPICY_VIDEO_VERSION;
+
+	$js_version = file_exists( $js_file )
+		? filemtime( $js_file )
+		: SPICY_VIDEO_VERSION;
+
 	wp_enqueue_style(
 		'spicy-video-main',
 		SPICY_VIDEO_URI . '/assets/css/main.css',
 		array(),
-		SPICY_VIDEO_VERSION
+		$css_version
 	);
 
-	/**
-	 * Main JavaScript.
-	 */
 	wp_enqueue_script(
 		'spicy-video-main',
 		SPICY_VIDEO_URI . '/assets/js/main.js',
 		array(),
-		SPICY_VIDEO_VERSION,
+		$js_version,
 		true
 	);
 }
